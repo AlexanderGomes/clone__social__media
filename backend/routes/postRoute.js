@@ -13,10 +13,4 @@ router.put('/:id/like', likeDeslikePost)
 
 
 
-
-
-
-
-
-
 module.exports = router;
