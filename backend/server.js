@@ -6,7 +6,7 @@ const dbConnect = require('./utils/mongoDb')
 
 // folders
 const userRoutes = require('./routes/userRoute')
-
+const postRoutes = require('./routes/postRoute')
 
 //calling packages
 const app = express();
@@ -19,6 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 
 //routes
 app.use('/api/user', userRoutes)
+app.use('/api/post', postRoutes)
+
 
 
 app.listen(port, async () => {

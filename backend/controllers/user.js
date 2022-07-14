@@ -110,7 +110,7 @@ const followUser = asyncHandler(async (req, res) => {
   }
 });
 
-const unfollowUser = asyncHandler(async(req, res) => {
+const unfollowUser = asyncHandler(async (req, res) => {
   if (req.body.userId !== req.params.id) {
     try {
       //finding both users
@@ -134,11 +134,50 @@ const unfollowUser = asyncHandler(async(req, res) => {
   }
 });
 
-const getUsersFriend = asyncHandler(async (req, res) => {
-res.send('on')
-})
+const getUsersFollowers = asyncHandler(async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
 
+    const friends = await Promise.all(
+      user.followings.map((friendId) => {
+        return User.findById(friendId);
+      })
+    );
 
+    let friendList = [];
+
+    friends.map((friend) => {
+      const { _id, username, name } = friend;
+      friendList.push({ _id, username, name });
+    });
+    res.status(200).json(friendList);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+});
+
+const getUsersFollowings = asyncHandler(async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    const friends = await Promise.all(
+      user.followers.map((friendId) => {
+        return User.findById(friendId);
+      })
+    );
+
+    let friendList = [];
+
+    friends.map((friend) => {
+      const { _id, username, name } = friend;
+      friendList.push({ _id, username, name });
+    });
+    res.status(200).json(friendList);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+
+});
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT__SECRET, {
@@ -153,5 +192,6 @@ module.exports = {
   getAllUsers,
   followUser,
   unfollowUser,
-  getUsersFriend
+  getUsersFollowers,
+  getUsersFollowings
 };
