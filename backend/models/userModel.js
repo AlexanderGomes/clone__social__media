@@ -18,6 +18,14 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add your password"],
     },
+    profilePicture: {
+      type: String,
+      default: "",
+    },
+    coverPicture: {
+      type: String,
+      default: "",
+    },
     followers: {
       type: Array,
       default: [],
