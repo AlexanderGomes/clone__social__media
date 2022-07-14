@@ -7,9 +7,9 @@ router.post('/', createPost)
 router.put('/:id', updatePost)
 router.get('/:id', getPostById)
 router.get('/profile/:username',getPostByUsername)
-router.get('/timeline/:userId', getTimelinePost)
+router.get('/timeline/:user', getTimelinePost)
 router.delete('/:id', deletePost)
-router.put('/:id/like', likeDeslikePost)
+router.put('/like/:id', likeDeslikePost)
 
 
 

@@ -9,14 +9,11 @@ const postSchema = mongoose.Schema (
           required: true,
           ref: 'User'
         },
-        img: {
-            type: String,
-          },
         text: {
             type: String,
             required: [true, 'Please add a text value']
         },
-        lkes: {
+        likes: {
             type: Array,
             default: [],
         },
