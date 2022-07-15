@@ -17,7 +17,7 @@ const Dash = () => {
   }, [user, navigate, dispatch]);
 
   return (
-    <div>Dash</div>
+    <div>Dashs</div>
   )
 }
 
