@@ -1,8 +1,23 @@
 import React from "react";
 import "./Navbar.css";
-import {Link} from 'react-router-dom'
+import {FaSignInAlt, FaSignOutAlt, FaUser} from 'react-icons/fa' 
+import {Link, useNavigate} from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { logout, reset } from '../../features/auth/authSlice'
 
 const Navbar = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const {user} = useSelector((state) => state.auth)
+
+ const onLogout = () => {
+    dispatch(logout())
+    dispatch(reset())
+    navigate('/login')
+  }
+
+
   return (
     <div className="nav__main">
       <div className="nav__logo">
@@ -10,12 +25,26 @@ const Navbar = () => {
       </div>
       <div className="nav__links">
         <ul className="nav__links__ul">
-        <Link to={'/register'}>
-          <li>Register </li>
-        </Link>
-        <Link to={'/login'}>
-          <li>Login</li> 
-        </Link>
+        {user ? (
+          <li>
+            <button className='btn' onClick={onLogout}>
+              Logout
+            </button>
+          </li>
+        ) : (
+          <>
+            <li>
+              <Link to='/login'>
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link to='/register'>
+                Register
+              </Link>
+            </li>
+          </>
+        )}
         </ul>
       </div>
     </div>

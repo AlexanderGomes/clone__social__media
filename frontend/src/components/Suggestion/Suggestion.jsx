@@ -1,13 +1,32 @@
-import React from 'react'
+import  {useEffect} from 'react'
 import Avatar from '../../images/noAvatar.png'
 import './Suggestion.css'
+import { useSelector} from "react-redux";
+import axios from 'axios';
 
 
 
 
 const Suggestion = ({friend}) => {
 const avatarImage =(friend.profilePicture ? friend.profilePicture : Avatar)
+const { user } = useSelector((state) => state.auth);
 
+
+const Follow = () => {
+  try {
+    axios.put(`/api/user/${friend._id}/follow`, {userId: user._id})
+  } catch (error) {
+    console.lof(error.message)
+  }
+}
+
+const unFollow = () => {
+  try {
+    axios.put(`/api/user/${friend._id}/unfollow`, {userId: user._id})
+  } catch (error) {
+    console.lof(error.message)
+  }
+}
 
 
   return (
@@ -20,8 +39,8 @@ const avatarImage =(friend.profilePicture ? friend.profilePicture : Avatar)
      <h4>{friend.name}</h4>
     </div>
     <div>
-        <button>Follow</button>
-        <button>unFollow</button>
+        <button onClick={Follow}>Follow</button>
+        <button onClick={unFollow}>unFollow</button>
 
     </div>
     </div>
