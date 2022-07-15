@@ -19,7 +19,7 @@ const updatePost = asyncHandler(async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
         if(post.user.toString() === req.body.user) {
-            await post.updateOne({$set: req.body});
+            await post.updateOne({$set: req.body}, {new: true});
             res.status(200).json({post, message: 'post has been updated'})
         }
     } catch (error) {

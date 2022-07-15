@@ -1,0 +1,16 @@
+.nav__main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px; 
+    line-height: 2rem;
+    background-color: antiquewhite;
+}
+
+.nav__links__ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    gap: 4rem;
+    cursor: pointer;
+    text-decoration: none;
+}

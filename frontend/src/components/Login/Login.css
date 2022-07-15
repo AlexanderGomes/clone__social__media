@@ -1,0 +1,24 @@
+.login__text {
+ display: block;
+ justify-content: center;
+ align-items: center;
+}
+
+.div {
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+.heading__login {
+  display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 80px 40px;
+}
+
+.heading__login  p {
+    color: #828282;
+}
