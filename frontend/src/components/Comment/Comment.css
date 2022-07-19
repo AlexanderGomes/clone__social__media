@@ -1,0 +1,27 @@
+.form__main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin-top: 2rem;
+  position: relative;
+  left: 3rem;
+}
+
+.comment__main {
+  display: flex;
+  /* background-color: #f4f4f4; */
+  margin: 10px;
+  border-radius: 12px;
+  flex-flow: column;
+
+}
+
+.comment__all {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(222, 215, 215);
+  /* height: 500px; */
+  width: 100%;
+}

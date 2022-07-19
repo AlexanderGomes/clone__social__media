@@ -3,3 +3,16 @@
     width: 15%;
     margin-top: 10px;
 }
+.feed__h3 {
+display: flex;
+justify-content: flex-start;
+padding-left: 30px;
+position: relative;
+top: 2rem;
+
+}
+
+
+.suggestion__move {
+  /* float: right; */
+}

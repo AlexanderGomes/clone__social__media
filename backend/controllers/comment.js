@@ -15,26 +15,14 @@ const addComment = asyncHandler(async (req, res) => {
 
 const deleteComment = asyncHandler(async (req, res) => {
   try {
-    const post = await Post.findByIdAndUpdate(
-      req.params.postId,
-      {
-        $pull: { comments: req.params.commentId },
-      },
-      { new: true }
-    );
-
-    if (!post) {
-      return res.status(400).send("Post not found");
+    const comment = await Comment.findById(req.params.id)
+    if(comment.userId.toString() === req.body.userId) {
+        await comment.deleteOne(comment);
+        res.status(200).json({comment, message: 'post has been deleted'})
     }
-    
-     
-    await Comment.findByIdAndDelete(req.params.commentId);
-
-    res.send("comment deleted");
-  } catch (err) {
-    console.log(err);
-    res.status(500).send("Something went wrong");
-  }
+} catch (error) {
+    res.status(400).json(error.message)
+}
 });
 
 
