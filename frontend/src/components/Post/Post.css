@@ -64,7 +64,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 7rem;
+    gap: 2rem;
+   
 }
 
 
@@ -74,4 +75,27 @@
     display: block;
     justify-content: flex-end;
     align-items: flex-end;
+}
+
+
+.post__lik {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+    background-color: rgb(230, 94, 94);
+    border-radius: 50%;
+    width: 20px;
+
+
+
+}
+
+.user__name {
+    position: relative;
+    left: 1rem;
+}
+
+.post__text {
+    margin: 2rem;
 }

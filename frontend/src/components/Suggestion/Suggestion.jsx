@@ -1,5 +1,6 @@
 import  {useEffect} from 'react'
 import Avatar from '../../images/noAvatar.png'
+import { toast } from 'react-toastify'
 import './Suggestion.css'
 import { useSelector} from "react-redux";
 import axios from 'axios';
@@ -15,6 +16,7 @@ const { user } = useSelector((state) => state.auth);
 const Follow = () => {
   try {
     axios.put(`/api/user/${friend._id}/follow`, {userId: user._id})
+     toast("User Followed")
   } catch (error) {
     console.lof(error.message)
   }
@@ -23,8 +25,12 @@ const Follow = () => {
 const unFollow = () => {
   try {
     axios.put(`/api/user/${friend._id}/unfollow`, {userId: user._id})
+    toast("User unFollowed")
+
   } catch (error) {
-    console.lof(error.message)
+    if (error) {
+      toast("wrong credentials")
+    }
   }
 }
 

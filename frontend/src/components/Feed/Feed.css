@@ -13,6 +13,18 @@ top: 2rem;
 }
 
 
-.suggestion__move {
-  /* float: right; */
+
+
+
+.button__friend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+margin: 1rem;
+}
+
+.post__feed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
