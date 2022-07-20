@@ -5,6 +5,7 @@ import Suggestion from "../Suggestion/Suggestion";
 import Post from "../Post/Post";
 import { useSelector } from "react-redux";
 import { FaUserFriends } from "react-icons/fa";
+import PostForm from "../Post/PostForm";
 
 const Feed = () => {
   const [friends, setFriends] = useState([]);
@@ -60,6 +61,7 @@ const Feed = () => {
   return (
     <div className="feed__main">
 <button className="button__friend" onClick={() => setToggle(true)}><FaUserFriends/> Friend suggestion</button>
+<PostForm />
       <div className="feed__post">
           {toggle &&
             friends.map((friend) => (

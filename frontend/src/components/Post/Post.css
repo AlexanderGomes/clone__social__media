@@ -99,3 +99,26 @@
 .post__text {
     margin: 2rem;
 }
+
+.form__post {
+    position: relative;
+    left: 13rem;
+    top: -2.70rem;
+}
+.file {
+    position: relative;
+    top: 2.50rem;
+    left: -14rem;
+
+}
+
+.file__text {
+    position: relative;
+    top: 2.50rem;
+    left: -15rem;
+}
+
+.btn__post {
+    position: relative;
+    left: -23rem;
+}

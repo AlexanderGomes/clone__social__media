@@ -10,8 +10,7 @@ const postSchema = mongoose.Schema (
           ref: 'User'
         },
         img: {
-            type: String,
-            default: "",
+            type: String
           },
         text: {
             type: String,
