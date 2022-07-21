@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import {toast} from 'react-toastify'
+
 
 
 
@@ -11,7 +13,7 @@ const PostForm = () => {
 
 
   const handlePost = async (e) => {
-    e.preventDefault()
+ e.preventDefault()
 
     const data = new FormData();
     data.append("file", file);
@@ -30,10 +32,12 @@ const PostForm = () => {
         img: url,
       };
       await axios.post("/api/post", newPost);
+      toast('reload the page')
     } catch (err) {
       console.log(err.message);
     }
   };
+
 
  
 
@@ -56,7 +60,7 @@ const PostForm = () => {
           accept=".png,.jpeg,.jpg,Screenshot"
           onChange={(e) => setFile(e.target.files[0])}
         />
-        <button className="btn__post">make a post</button>
+        <button className="btn__post" onClick={handlePost}>make a post</button>
       </form>
     </div>
   );
