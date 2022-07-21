@@ -6,12 +6,14 @@ import Post from "../Post/Post";
 import { useSelector } from "react-redux";
 import { FaUserFriends } from "react-icons/fa";
 import PostForm from "../Post/PostForm";
+import Data from "../Navbar/Data";
 
 const Feed = () => {
   const [friends, setFriends] = useState([]);
   const [visible, setViseble] = useState(3);
   const [posts, setPosts] = useState([]);
   const [toggle, setToggle] = useState(false);
+  const [people, setPeople] = useState([]);
 
   const { user } = useSelector((state) => state.auth);
 
@@ -33,9 +35,23 @@ const Feed = () => {
   };
   GetAllUsers();
 
-  const GetPosts = async () => {
+  const GetAllUsersId = async () => {
     useEffect(() => {
       axios
+      .get(`/api/user/${user._id}` )
+      .then((res) => {
+        setPeople(res.data);
+      })
+      .catch((error) => {
+          console.log(error);
+        });
+    }, [setPeople]);
+  };
+  GetAllUsersId();
+
+  const GetPosts = async () => {
+    useEffect(() => {
+         axios
         .get(`/api/post/timeline/${user._id}`)
         .then((res) => {
           setPosts(
@@ -60,28 +76,34 @@ const Feed = () => {
   // };
   return (
     <div className="feed__main">
-<button className="button__friend" onClick={() => setToggle(true)}><FaUserFriends/> Friend suggestion</button>
-<PostForm />
+      <button className="button__friend" onClick={() => setToggle(true)}>
+        <FaUserFriends /> Friend suggestion
+      </button>
+      <PostForm />
       <div className="feed__post">
-          {toggle &&
-            friends.map((friend) => (
-              <div>
-                <Suggestion key={friend._id} friend={friend} />
-              </div>
-            ))}
-        {posts.length > 0 ?
-              posts.map((post) => (
-                <Post className='main' key={post._id}  post={post}/>
-              ))
-              : (
-                <>
-                <p className="post__feed">No posts, follow someone to see what they are talking about</p>
-                </>
-              )
-        }
+        {toggle &&
+          friends.map((friend) => (
+            <div>
+              <Suggestion key={friend._id} friend={friend} />
+            </div>
+          ))}
+        {posts.length > 0 ? (
+          posts.map((post) => (
+            <Post className="main" key={post._id} post={post} />
+          ))
+        ) : (
+          <>
+            <p className="post__feed">
+              No posts, follow someone to see what they are talking about
+            </p>
+          </>
+        )}
         <div className="suggestion__move">
-        <div className="feed__friend">
-        </div>
+          <div>
+          {Object.entries(people).map((p, key) => (
+            <Data p={p}  key={p._id}/>
+          ))}
+          </div>
         </div>
       </div>
     </div>

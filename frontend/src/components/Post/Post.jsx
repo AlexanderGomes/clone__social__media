@@ -16,7 +16,7 @@ const Post = ({ post }) => {
   const [comments, setComments] = useState([]);
   const [toggle, setToggle] = useState(false);
 
-  // const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   const avatarImage = users.profilePicture ? users.profilePicture : Avatar;
 
@@ -54,16 +54,16 @@ const Post = ({ post }) => {
     fetchComment();
   }, [setComments]);
 
-  const DeleteComment = async () => {
+ 
 
-      try {
-        await axios.delete(`/api/post/${post._id}`, {
-          user: users._id,
-        });
-      } catch (error) {
-        console.log(error.message);
-      }
-  };
+const DeletePost = async () => {
+  try {
+      await axios.delete('/api/post/' + post._id, {user: user._id}) 
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 
   return (
     <div className="whole">
@@ -72,13 +72,6 @@ const Post = ({ post }) => {
           <div className="post__user">
             <img className="avatar__img" src={avatarImage} alt="" />
             <h3 className="user__name">{users.name}</h3>
-
-            <button
-              className="icon__delete"
-              onClick={() => DeleteComment(post._id)}
-            >
-              <TiDeleteOutline />
-            </button>
           </div>
           <h4 className="post__text">{post.text}</h4>
           <div className="img__div">

@@ -31,7 +31,7 @@ const deletePost = asyncHandler(async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
         if(post.user.toString() === req.body.user) {
-            await post.deleteOne()
+            await post.deleteOne(post)
             res.status(200).json({message: 'post deleted'})
         } else {
           res.status(500).json({message: 'not your post'})

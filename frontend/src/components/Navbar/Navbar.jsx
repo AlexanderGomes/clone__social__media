@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import "./Navbar.css";
-import {FaSignInAlt, FaSignOutAlt, FaUser} from 'react-icons/fa' 
-import {Link, useNavigate} from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { logout, reset } from '../../features/auth/authSlice'
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout, reset } from "../../features/auth/authSlice";
+
 
 const Navbar = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
 
-  const {user} = useSelector((state) => state.auth)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
- const onLogout = () => {
-    dispatch(logout())
-    dispatch(reset())
-    navigate('/login')
-  }
+  const { user } = useSelector((state) => state.auth);
+
+  const onLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/login");
+  };
 
 
   return (
@@ -25,26 +27,22 @@ const Navbar = () => {
       </div>
       <div className="nav__links">
         <ul className="nav__links__ul">
-        {user ? (
-          <li>
-            <button className='btn' onClick={onLogout}>
-              Logout
-            </button>
-          </li>
-        ) : (
-          <>
-            <li>
-              <Link to='/login'>
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link to='/register'>
-                Register
-              </Link>
-            </li>
-          </>
-        )}
+          {user ? (
+            <div>
+              <button className="btn" onClick={onLogout}>
+                Logout
+              </button>
+            </div>
+          ) : (
+            <>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/register">Register</Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </div>
