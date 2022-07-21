@@ -6,7 +6,6 @@ import Post from "../Post/Post";
 import { useSelector } from "react-redux";
 import { FaUserFriends } from "react-icons/fa";
 import PostForm from "../Post/PostForm";
-import Data from "../Navbar/Data";
 
 const Feed = () => {
   const [friends, setFriends] = useState([]);
@@ -99,11 +98,6 @@ const Feed = () => {
           </>
         )}
         <div className="suggestion__move">
-          <div>
-          {Object.entries(people).map((p, key) => (
-            <Data p={p}  key={p._id}/>
-          ))}
-          </div>
         </div>
       </div>
     </div>
