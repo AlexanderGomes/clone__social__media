@@ -71,7 +71,12 @@ const getSingleUser = asyncHandler(async (req, res) => {
   try {
     //finding user by id and sending it back
     const user = await User.findById(req.params.id);
-    res.status(200).json(user);
+    if (user) {
+      res.status(201).json({token: generateToken(user._id), user});
+    } else {
+      res.status(400).json("invalid user data");
+    }
+
   } catch (error) {
     res.status(400).json(error.message);
   }

@@ -53,7 +53,7 @@ const likeDeslikePost = asyncHandler(async (req, res) => {
           res.status(200).json("The post has been disliked");
         }
       } catch (err) {
-        res.status(500).json(err);
+        res.status(500).json({message: 'error'});
       }
 })
 
@@ -99,5 +99,5 @@ module.exports = {
     likeDeslikePost,
     getPostByUsername,
     getTimelinePost,
-    getPostById
+    getPostById,
 }
